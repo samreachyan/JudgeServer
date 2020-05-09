@@ -8,7 +8,7 @@ RUN buildDeps='software-properties-common git libtool cmake python-dev python3-p
     rm /usr/bin/gcc /usr/bin/g++ && ln -s /usr/bin/gcc-9 /usr/bin/gcc && ln -s /usr/bin/g++-9 /usr/bin/g++ && \
     add-apt-repository ppa:openjdk-r/ppa && apt-get update && apt-get install -y openjdk-8-jdk && \
     pip3 install --no-cache-dir psutil gunicorn flask requests && \
-    wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz && tar -C /usr/local -zxf  go1.14.2.linux-amd64.tar.gz && ln -s /usr/local/go/bin/go /usr/bin/go && rm go1.14.2.linux-amd64.tar.gz && \
+    wget https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz && tar -C /usr/local -zxf  go1.14.2.linux-amd64.tar.gz && echo -e "export GOROOT=/usr/local/go\nexport PATH=\$PATH:\$GOROOT/bin" >> /etc/profile && ln -s /usr/local/go/bin/go /usr/bin/go && rm go1.14.2.linux-amd64.tar.gz && \
     cd /tmp && git clone -b newnew  --depth 1 https://github.com/QingdaoU/Judger && cd Judger && \
     mkdir build && cd build && cmake .. && make && make install && cd ../bindings/Python && python3 setup.py install && \
     apt-get purge -y --auto-remove $buildDeps && \
